@@ -2,7 +2,8 @@ import React, {useState} from "react";
 import {Container, Typography, AppBar, Toolbar, Button, TextField, Paper, List} from '@material-ui/core';
 import NoteList from "./notes/NoteList";
 import {connect} from "react-redux";
-import {addNote, updateNote} from "./actions";
+import {addNote} from "./actions";
+import './index.css';
 
 const App = ({notes, addNote}) => {
     console.log("Notes: ", notes);
@@ -10,12 +11,14 @@ const App = ({notes, addNote}) => {
 
     const sendInput = (e) => {
         e.preventDefault();
-        const note = {
-            text: input
+        if(input !== "") {
+            const note = {
+                text: input
+            }
+            console.log("App js");
+            console.log(input);
+            addNote(note);
         }
-        console.log("App js");
-        console.log(input);
-        addNote(note);
     }
 
     const handleOnInputChange = (e) => {
@@ -25,20 +28,22 @@ const App = ({notes, addNote}) => {
     return (
         <div>
             <Container>
-                <Typography align="center" variant="h2">
+                <Typography id="todo-title" variant="h2" >
                     Another To Do List
                 </Typography>
             </Container>
             <Container id="menu">
-                <AppBar position="static">
+                <AppBar position="static" id="todo-appbar">
                     <Toolbar>
                         <Button variant="contained" color="secondary" onClick={sendInput}>
                             Create a Note
                         </Button>
-                        <form noValidate autoComplete="off">
+                        <form noValidate autoComplete="off" id="todo-input">
                             <div>
-                                <TextField
-                                           defaultValue="Add your task here"
+                                <TextField required
+                                           id="filled-required"
+                                           label="Required"
+                                           defaultValue=""
                                            onChange={handleOnInputChange}/>
                             </div>
                         </form>
@@ -47,7 +52,11 @@ const App = ({notes, addNote}) => {
             </Container>
 
             <Container>
-                <NoteList />
+                <Paper>
+                    <List>
+                        <NoteList />
+                    </List>
+                </Paper>
             </Container>
         </div>
     );

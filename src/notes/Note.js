@@ -1,12 +1,16 @@
 import React from "react";
+import {ListItem, ListItemText} from "@material-ui/core";
+import '../index.css';
 
 const Note = ({onClick, completed, text}) => (
-    <div onClick={onClick}
-         style={{
-             textDecoration: completed ? 'line-through' : 'none'
-         }}>
-        {text}
-    </div>
+    <ListItem id="todo-note">
+        <div onClick={onClick}
+             style={{
+                 textDecoration: completed ? "line-through" : 'none'
+             }}>
+            <ListItemText primary={text} />
+        </div>
+    </ListItem>
 )
 
 

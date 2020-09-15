@@ -1,0 +1,19 @@
+#todo-input {
+    vertical-align: middle;
+    margin-left: 20px;
+}
+
+#todo-appbar {
+    background: aliceblue;
+}
+
+#todo-title {
+    color: #f44336;
+    align-self: center;
+}
+
+#todo-note {
+    color: #f44336;
+    background: aliceblue;
+    font-weight: bold;
+}
