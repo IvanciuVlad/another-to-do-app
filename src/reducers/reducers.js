@@ -1,5 +1,5 @@
-import {ADD_NOTE, UPDATE_NOTE} from "../actions/types";
-
+import {ADD_NOTE, UPDATE_NOTE, DELETE_NOTE} from "../actions/types";
+import _ from "lodash";
 
 export default (state = [], action) => {
     switch(action.type) {
@@ -14,6 +14,10 @@ export default (state = [], action) => {
             return state.map(note =>
                 note.id === action.id ? { ...note, completed: !note.completed } : note
             )
+        case DELETE_NOTE:
+            console.log("delete reducer", state);
+            return state.filter((note, id) => id !== action.id)
+
         default:
             return state;
     }

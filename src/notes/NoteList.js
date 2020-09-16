@@ -10,7 +10,7 @@ const NoteList = ({notes, updateNote}) => {
         return <div></div>;
     }
     return notes.map(note => (
-        <Note key={ note.id } text={note.text} completed={note.completed} onClick={() => updateNote(note.id)} />
+        <Note key={ note.id } id={note.id} text={note.text} completed={note.completed} onClick={() => updateNote(note.id)} />
     ))
 }
 
@@ -22,7 +22,7 @@ const mapDispatchToProps = dispatch => ({
     updateNote: id => dispatch(updateNote(id))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(NoteList)
+export default connect(mapStateToProps, mapDispatchToProps)(NoteList);
 
 /*
 

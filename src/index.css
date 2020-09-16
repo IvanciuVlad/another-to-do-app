@@ -17,3 +17,13 @@
     background: aliceblue;
     font-weight: bold;
 }
+
+
+.todo-listitem {
+    display: inline-flex;
+    width: 100%;
+}
+
+.todo-listitem-text {
+    width: 100%;
+}
