@@ -22,6 +22,7 @@ import './index.css';
 const App = ({notes, addNote}) => {
     console.log("Notes: ", notes);
     const [input, setInput] = useState("");
+    const [value, setValue] = React.useState('all');
 
     const sendInput = (e) => {
         e.preventDefault();
@@ -29,8 +30,6 @@ const App = ({notes, addNote}) => {
             const note = {
                 text: input
             }
-            console.log("App js");
-            console.log(input);
             addNote(note);
         }
     }
@@ -38,6 +37,10 @@ const App = ({notes, addNote}) => {
     const handleOnInputChange = (e) => {
         setInput(e.target.value)
     }
+
+    const handleChange = (e) => {
+        setValue(e.target.value);
+    };
 
     return (
         <div>
@@ -65,9 +68,9 @@ const App = ({notes, addNote}) => {
                         <FormControl className="todo-radiobuttons">
                             <div>
                                 <FormLabel component="legend">Filter</FormLabel>
-                                <RadioGroup row>
+                                <RadioGroup row value={value}  onChange={handleChange}>
                                     <FormControlLabel value="all" control={<Radio/>} label="All"/>
-                                    <FormControlLabel value="finished" control={<Radio/>} label="Finished"/>
+                                    <FormControlLabel value="completed" control={<Radio/>} label="Completed"/>
                                     <FormControlLabel value="available" control={<Radio/>} label="Available"/>
                                 </RadioGroup>
                             </div>
@@ -79,7 +82,7 @@ const App = ({notes, addNote}) => {
             <Container>
                 <Paper>
                     <List>
-                        <NoteList/>
+                        <NoteList filter={value} />
                     </List>
                 </Paper>
             </Container>
@@ -90,6 +93,5 @@ const App = ({notes, addNote}) => {
 const mapStateToProps = state => ({
     notes: state.reducers
 })
-
 
 export default connect(mapStateToProps, {addNote})(App);

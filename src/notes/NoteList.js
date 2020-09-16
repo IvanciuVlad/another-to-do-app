@@ -1,16 +1,16 @@
 import React from "react";
-import { connect }  from "react-redux";
+import {connect} from "react-redux";
 import {updateNote} from "../actions";
 import Note from "./Note";
 
 
-const NoteList = ({notes, updateNote}) => {
-    console.log(notes, updateNote)
-    if(!notes) {
-        return <div></div>;
+const NoteList = ({filter, notes, updateNote}) => {
+    if (!notes) {
+        return <div />;
     }
     return notes.map(note => (
-        <Note key={ note.id } id={note.id} text={note.text} completed={note.completed} onClick={() => updateNote(note.id)} />
+        <Note key={note.id} id={note.id} text={note.text} completed={note.completed} filter={filter}
+              onClick={() => updateNote(note.id)}/>
     ))
 }
 
@@ -23,44 +23,3 @@ const mapDispatchToProps = dispatch => ({
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(NoteList);
-
-/*
-
-class NoteList extends React.Component {
-    componentDidMount() {
-        this.props.fetchNotes();
-    }
-
-    renderNotes() {
-        return (
-            <div>
-                <i className="" />
-                <div>
-                    {notes.title}
-                    {notes.description}
-                </div>
-            </div>
-        );
-    }
-
-    render() {
-        console.log(this.props.notes);
-        return (
-          <div>
-              <Container id="list" maxWidth={"md"}>
-                  <Paper>
-                      <List>{this.renderNotes()}</List>
-                  </Paper>
-              </Container>
-          </div>
-        );
-    }
-}
-
-const mapStateToProps = (state) => {
-    return {
-        notes: Object.values(state.notes),
-    };
-};
-
-export default connect(mapStateToProps, {fetchNotes})(NoteList);*/
