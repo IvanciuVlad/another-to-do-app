@@ -1,5 +1,19 @@
 import React, {useState} from "react";
-import {Container, Typography, AppBar, Toolbar, Button, TextField, Paper, List} from '@material-ui/core';
+import {
+    Container,
+    Typography,
+    AppBar,
+    Toolbar,
+    Button,
+    TextField,
+    Paper,
+    List,
+    FormControl,
+    FormLabel,
+    RadioGroup,
+    FormControlLabel,
+    Radio
+} from '@material-ui/core';
 import NoteList from "./notes/NoteList";
 import {connect} from "react-redux";
 import {addNote} from "./actions";
@@ -11,7 +25,7 @@ const App = ({notes, addNote}) => {
 
     const sendInput = (e) => {
         e.preventDefault();
-        if(input !== "") {
+        if (input !== "") {
             const note = {
                 text: input
             }
@@ -28,13 +42,13 @@ const App = ({notes, addNote}) => {
     return (
         <div>
             <Container>
-                <Typography id="todo-title" variant="h2" >
+                <Typography id="todo-title" variant="h2">
                     Another To Do List
                 </Typography>
             </Container>
             <Container id="menu">
                 <AppBar position="static" id="todo-appbar">
-                    <Toolbar>
+                    <Toolbar id="todo-toolbar">
                         <Button variant="contained" color="secondary" onClick={sendInput}>
                             Create a Note
                         </Button>
@@ -47,6 +61,17 @@ const App = ({notes, addNote}) => {
                                            onChange={handleOnInputChange}/>
                             </div>
                         </form>
+
+                        <FormControl className="todo-radiobuttons">
+                            <div>
+                                <FormLabel component="legend">Filter</FormLabel>
+                                <RadioGroup row>
+                                    <FormControlLabel value="all" control={<Radio/>} label="All"/>
+                                    <FormControlLabel value="finished" control={<Radio/>} label="Finished"/>
+                                    <FormControlLabel value="available" control={<Radio/>} label="Available"/>
+                                </RadioGroup>
+                            </div>
+                        </FormControl>
                     </Toolbar>
                 </AppBar>
             </Container>
@@ -54,7 +79,7 @@ const App = ({notes, addNote}) => {
             <Container>
                 <Paper>
                     <List>
-                        <NoteList />
+                        <NoteList/>
                     </List>
                 </Paper>
             </Container>

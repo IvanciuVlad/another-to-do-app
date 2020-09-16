@@ -5,6 +5,11 @@
 
 #todo-appbar {
     background: aliceblue;
+    width: 100%;
+}
+
+#todo-toolbar {
+    display: inline-flex;
 }
 
 #todo-title {
@@ -26,4 +31,11 @@
 
 .todo-listitem-text {
     width: 100%;
+}
+
+.todo-radiobuttons {
+    color: #f44336;
+    width: 100%;
+    align-items: flex-end;
+    padding-right: 30px;
 }
